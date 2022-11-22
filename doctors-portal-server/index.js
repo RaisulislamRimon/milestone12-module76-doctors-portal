@@ -172,6 +172,24 @@ async function run() {
       res.send(result);
     });
 
+    app.get("/appointmentSpecialty", async (req, res) => {
+      const query = {};
+      const result = await appointmentOptionCollection
+        .find(query)
+        .project({ name: 1 })
+        .toArray();
+      res.send(result);
+    });
+
+    /***
+     * API Naming Convention
+     * app.get('/bookings')
+     * app.get('/bookings/:id')
+     * app.post('/bookings')
+     * app.patch('/bookings/:id')
+     * app.delete('/bookings/:id')
+     */
+
     app.get(`/allusers/admin/:email`, async (req, res) => {
       const email = req.params.email;
       const query = { email: email };
